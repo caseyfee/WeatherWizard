@@ -31,15 +31,94 @@
 
 <body>
     <div>
-        <div class="navbar">
+        <h1 class="navbar">
             Weather Application
-        </div>
+        </h1>
+
+        <section class="vh-50">
+            <div class="container py-5 h-50">
+
+                <div class=" d-flex  justify-content-between gap-3 align-items-center h-50">
+                    <!-- row  justify-content-center-->
+                    <div class="searchResults">
+                        <div class="column border-bottom border-dark">
+                            <!-- Things that used to be in the class above - col-md-8 col-lg-6 col-xl-4 -->
+
+                            <h3 class="mb-4 pb-2 fw-normal">Check the weather forecast</h3>
+
+                            <div class="input-group rounded mb-3">
+                                <input type="search" class="form-control rounded" placeholder="City" aria-label="Search"
+                                    aria-describedby="search-addon" />
+                                <a href="#!" type="button">
+                                    <span class="input-group-text border-0 fw-bold" id="search-addon">
+                                        Search!
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Recent search buttons -->
+                        <a href="#!" type="button">
+                            <span class="input-group-text border-0 fw-bold" id="search-addon">
+                                Search!
+                            </span>
+                        </a>
+                        <a href="#!" type="button">
+                            <span class="input-group-text border-0 fw-bold" id="search-addon">
+                                Search!
+                            </span>
+                        </a>
+                        <a href="#!" type="button">
+                            <span class="input-group-text border-0 fw-bold" id="search-addon">
+                                Search!
+                            </span>
+                        </a>
+                        <a href="#!" type="button">
+                            <span class="input-group-text border-0 fw-bold" id="search-addon">
+                                Search!
+                            </span>
+                        </a>
+                    </div>
+
+                    <!-- Celsius/Farenheit button option -->
+                    <!-- <div class="mb-4 pb-2">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                    value="option1" checked />
+                                <label class="form-check-label" for="inlineRadio1">Celsius</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                    value="option2" />
+                                <label class="form-check-label" for="inlineRadio2">Farenheit</label>
+                            </div>
+                        </div> -->
+
+                    <!-- <div class="card shadow-0 border"> -->
+                        <div class="card shadow-0 border card-body p-4">
+
+                            <h4 class="mb-1 sfw-normal">New York, US</h4>
+                            <p class="mb-2">Current temperature: <strong>5.42°C</strong></p>
+                            <p>Feels like: <strong>4.37°C</strong></p>
+                            <p>Max: <strong>6.11°C</strong>, Min: <strong>3.89°C</strong></p>
+
+                            <div class="d-flex flex-row align-items-center">
+                                <p class="mb-0 me-4">Scattered Clouds</p>
+                                <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
+                            </div>
+
+                        </div>
+                    <!-- </div> -->
+
+
+                </div>
+
+            </div>
+        </section>
 
 
 
-
-        
-        <aside>
+        <!-- <aside>
             <h2>Find the Weather: </h2>
 
             <input class="inputBox" type="text"> </input>
@@ -58,43 +137,122 @@
                 <p class="humid">Humidity: </p>
             </div>
 
-        </div>
-        
+        </div> -->
+
 
         <div class="forecastContainer">
             <h3 class="futureForecast"> 5-Day Forecast</h3>
-            <div class="forecast">
+            <div class="forecast d-flex justify-content-around">
+                <div class="card shadow-0 border">
+                    <div class="card-body p-4 bg-info mb-3">
 
-                <div class="day"> Date Input
-                    <p class="weatherIcon"> Sun? </p>
-                    <ul class="forecastTemp"> Temp: </ul>
-                    <ul class="forecastWind"> Wind: </ul>
-                    <ul class="forecastHumidity"> Humidity: </ul>
+                        <h4 class="mb-1 sfw-normal">New York, US</h4>
+                        <p class="mb-2">Current temperature: <strong>5.42°C</strong></p>
+                        <p>Wind: <strong>4.37°C</strong></p>
+                        <p>Humidity: <strong>6.11°C</strong></p>
+
+                        <div class="d-flex flex-row align-items-center">
+                            <p class="mb-0 me-4">Scattered Clouds</p>
+                            <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="day"> Date Input
-                    <p class="weatherIcon"> Sun? </p>
-                    <ul class="forecastTemp"> Temp: </ul>
-                    <ul class="forecastWind"> Wind: </ul>
-                    <ul class="forecastHumidity"> Humidity: </ul>
+
+                <div class="card shadow-0 border">
+                    <div class="card-body p-4 bg-info mb-3">
+
+                        <h4 class="mb-1 sfw-normal">New York, US</h4>
+                        <p class="mb-2">Current temperature: <strong>5.42°C</strong></p>
+                        <p>Wind: <strong>4.37°C</strong></p>
+                        <p>Humidity: <strong>6.11°C</strong></p>
+
+                        <div class="d-flex flex-row align-items-center">
+                            <p class="mb-0 me-4">Scattered Clouds</p>
+                            <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="day"> Date Input
-                    <p class="weatherIcon"> Sun? </p>
-                    <ul class="forecastTemp"> Temp: </ul>
-                    <ul class="forecastWind"> Wind: </ul>
-                    <ul class="forecastHumidity"> Humidity: </ul>
+
+                <div class="card shadow-0 border">
+                    <div class="card-body p-4 bg-info mb-3">
+
+                        <h4 class="mb-1 sfw-normal">New York, US</h4>
+                        <p class="mb-2">Current temperature: <strong>5.42°C</strong></p>
+                        <p>Wind: <strong>4.37°C</strong></p>
+                        <p>Humidity: <strong>6.11°C</strong></p>
+
+                        <div class="d-flex flex-row align-items-center">
+                            <p class="mb-0 me-4">Scattered Clouds</p>
+                            <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="day"> Date Input
-                    <p class="weatherIcon"> Sun? </p>
-                    <ul class="forecastTemp"> Temp: </ul>
-                    <ul class="forecastWind"> Wind: </ul>
-                    <ul class="forecastHumidity"> Humidity: </ul>
+
+                <div class="card shadow-0 border">
+                    <div class="card-body p-4 bg-info mb-3">
+
+                        <h4 class="mb-1 sfw-normal">New York, US</h4>
+                        <p class="mb-2">Current temperature: <strong>5.42°C</strong></p>
+                        <p>Wind: <strong>4.37°C</strong></p>
+                        <p>Humidity: <strong>6.11°C</strong></p>
+
+                        <div class="d-flex flex-row align-items-center">
+                            <p class="mb-0 me-4">Scattered Clouds</p>
+                            <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="day"> Date Input
-                    <p class="weatherIcon"> Sun? </p>
-                    <ul class="forecastTemp"> Temp: </ul>
-                    <ul class="forecastWind"> Wind: </ul>
-                    <ul class="forecastHumidity"> Humidity: </ul>
+
+                <div class="card shadow-0 border">
+                    <div class="card-body p-4 bg-info mb-3">
+
+                        <h4 class="mb-1 sfw-normal">New York, US</h4>
+                        <p class="mb-2">Current temperature: <strong>5.42°C</strong></p>
+                        <p>Wind: <strong>4.37°C</strong></p>
+                        <p>Humidity: <strong>6.11°C</strong></p>
+
+                        <div class="d-flex flex-row  align-items-center">
+                            <p class="mb-0 me-4">Scattered Clouds</p>
+                            <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
+                        </div>
+
+                    </div>
                 </div>
+                <!-- <div class="day"> Date Input
+                        <p class="weatherIcon"> Sun? </p>
+                        <ul class="forecastTemp"> Temp: </ul>
+                        <ul class="forecastWind"> Wind: </ul>
+                        <ul class="forecastHumidity"> Humidity: </ul>
+                    </div>
+                    <div class="day"> Date Input
+                        <p class="weatherIcon"> Sun? </p>
+                        <ul class="forecastTemp"> Temp: </ul>
+                        <ul class="forecastWind"> Wind: </ul>
+                        <ul class="forecastHumidity"> Humidity: </ul>
+                    </div>
+                    <div class="day"> Date Input
+                        <p class="weatherIcon"> Sun? </p>
+                        <ul class="forecastTemp"> Temp: </ul>
+                        <ul class="forecastWind"> Wind: </ul>
+                        <ul class="forecastHumidity"> Humidity: </ul>
+                    </div>
+                    <div class="day"> Date Input
+                        <p class="weatherIcon"> Sun? </p>
+                        <ul class="forecastTemp"> Temp: </ul>
+                        <ul class="forecastWind"> Wind: </ul>
+                        <ul class="forecastHumidity"> Humidity: </ul>
+                    </div>
+                    <div class="day"> Date Input
+                        <p class="weatherIcon"> Sun? </p>
+                        <ul class="forecastTemp"> Temp: </ul>
+                        <ul class="forecastWind"> Wind: </ul>
+                        <ul class="forecastHumidity"> Humidity: </ul>
+                    </div> -->
+
             </div>
 
         </div>

@@ -54,3 +54,7 @@ aside {
 .selectedCityContainer {
   display: flex;
 }
+
+.hide {
+  display: none;
+}
