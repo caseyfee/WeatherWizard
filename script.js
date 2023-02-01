@@ -11,8 +11,11 @@ var queryURL = "api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+APIKe
 
 fetch(queryURL)
     .then(function (response) {
-    return response.json();
-    console.log(response.status);
+        console.log(response.status);
+        if (response.status !==200){
+            console.log("CHECK NETWORK")
+        }
+        return response.json();
     })
     .then(function (data) {
         console.log(data);
