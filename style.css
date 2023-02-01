@@ -8,20 +8,20 @@ body {
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
     color: white;
 }
-
+/* 
 .buttonBox {
     border-bottom: 2px solid darkgrey;
-    }
+    } */
 
-.Btn {
+/* .Btn {
     border-left: 1px solid black;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     background-color: #06aed5;
     color: white;
-  }
+  } */
 
-.selectedCity {
+/* .selectedCity {
     border: 1px solid black;
   }
 
@@ -29,7 +29,7 @@ body {
     background-color: darkblue;
     border: 1px solid black;
     color: white;
-  }
+  } */
 
 .forecast {
     display: flex;
@@ -42,18 +42,18 @@ body {
 
 }
 
-aside {
+/* aside {
   width: 30%;
   padding-left: 0px;
   margin-left: 0px;
   float: left;
   font-style: italic;
   background-color: lightgray;
-}
+} */
 
-.selectedCityContainer {
+/* .selectedCityContainer {
   display: flex;
-}
+} */
 
 .hide {
   display: none;
