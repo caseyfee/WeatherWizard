@@ -1,15 +1,20 @@
 
-// https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys
-// api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-
 var APIKey = "029f73215f94df358a06425c3bef0fed";
 var city = "chicago";
 var state;
-var county;
+var country;
 var zipCode;
-var queryURL = "api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+APIKey;
+var zipCodeQuery ="api.openweathermap.org/geo/1.0/zip?zip="+zipCode+"&appid="+APIKey;
+var limit = 5;
+var extraCityQueryURL = "api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+APIKey;
+var cityQueryURL = "api.openweathermap.org/geo/1.0/direct?q="+city+"&limit="+limit+"&appid="+APIKey;
 
-fetch(queryURL)
+// var lat = '41.85';
+// var lon ='-87.65';
+
+// var latlongQueryURL = "api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid="+APIKey;
+
+fetch(cityQueryURL)
     .then(function (response) {
         console.log(response.status);
         if (response.status !==200){
