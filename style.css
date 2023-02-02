@@ -58,3 +58,7 @@ body {
 .hide {
   display: none;
 }
+
+.currentCity {
+  color:blueviolet;
+}
