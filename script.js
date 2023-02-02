@@ -11,8 +11,8 @@ var cityQueryURL = "https://api.openweathermap.org/geo/1.0/direct?q="+city+"&lim
 
 // https://api.openweathermap.org/geo/1.0/direct?q=chicago&limit=5&appid=029f73215f94df358a06425c3bef0fed
 
-// var lat = '41.85';
-// var lon ='-87.65';
+var lat;
+var lon;
 
 // var latlongQueryURL = "api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid="+APIKey;
 
@@ -26,4 +26,5 @@ fetch(cityQueryURL)
     })
     .then(function (data) {
         console.log(data);
+        for 
     });
