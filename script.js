@@ -4,10 +4,12 @@ var city = "chicago";
 var state;
 var country;
 var zipCode;
-var zipCodeQuery ="api.openweathermap.org/geo/1.0/zip?zip="+zipCode+"&appid="+APIKey;
+var zipCodeQuery ="https://api.openweathermap.org/geo/1.0/zip?zip="+zipCode+"&appid="+APIKey;
 var limit = 5;
-var extraCityQueryURL = "api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+APIKey;
-var cityQueryURL = "api.openweathermap.org/geo/1.0/direct?q="+city+"&limit="+limit+"&appid="+APIKey;
+var extraCityQueryURL = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+APIKey;
+var cityQueryURL = "https://api.openweathermap.org/geo/1.0/direct?q="+city+"&limit="+limit+"&appid="+APIKey;
+
+// https://api.openweathermap.org/geo/1.0/direct?q=chicago&limit=5&appid=029f73215f94df358a06425c3bef0fed
 
 // var lat = '41.85';
 // var lon ='-87.65';
