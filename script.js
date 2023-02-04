@@ -19,10 +19,8 @@ var searchContainerEl = document.querySelector('#input-group');
 // https://api.openweathermap.org/geo/1.0/direct?q=chicago&limit=5&appid=029f73215f94df358a06425c3bef0fed
 
 
-
-
 // Create an action to pull the city data from the input
-
+// Use class to change text.content of all of them at once? [class=currentCity]
 
 var mainSearchInput = function(event){
     event.preventDefault();
@@ -34,6 +32,7 @@ var mainSearchInput = function(event){
 
         searchContainerEl.textContent = '';
         cityInputEl.value='';
+        console.log(searchContainerEl);
     }
     else {
         console.log("there is an issue");
