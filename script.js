@@ -90,7 +90,7 @@ var fiveDayInfo = function (cityLat, cityLon) {
                         
             // Create loop that picks up every 8 entries in the 40 entry long list to get each day's time
             // for(var i=0; i<fiveDayData.length; i++){
-                console.log(fiveDayData[0][0]);
+                console.log(fiveDayData[i][0]);
                 
                 // return fiveDayData[i][0];
             // }
