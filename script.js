@@ -9,6 +9,7 @@ var limit = 5;
 
 var cityInputEl = document.getElementById("cityName");
 var searchContainerEl = document.querySelector('#input-group');
+var fiveDayEL=document.getElementById("#fiveDaysCards");
 
 
 // https://api.openweathermap.org/geo/1.0/direct?q=chicago&limit=5&appid=029f73215f94df358a06425c3bef0fed
@@ -36,12 +37,12 @@ var searchContainerEl = document.querySelector('#input-group');
   var showCurrentWeather = function(cityName, data) {
     var currentWeatherHTML = `<h4 class="currentCity mb-1 sfw-normal">${cityName}</h4>
     <p class="mb-2">Current temperature: <strong>${data.main.temp}°C</strong></p>
-    <p>Feels like: <strong>4.37°C</strong></p>
-    <p>Max: <strong>6.11°C</strong>, Min: <strong>3.89°C</strong></p>
+    <p>Feels like: <strong>${data.main.feels_like}</strong></p>
+    <p>Max: <strong>${data.main.temp_max}</strong>, Min: <strong>${data.main.temp_min}</strong></p>
 
     <div class="d-flex flex-row align-items-center">
-        <p class="mb-0 me-4">Scattered Clouds</p>
-        <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
+        <p class="mb-0 me-4">${data.weather.main}</p>
+        <i class="fas fa-cloud fa-3x" style="color: #eee;"> ${data.weather.icon}</i>
     </div>`;
 
     $('#currentCityWeather').html(currentWeatherHTML)
@@ -73,9 +74,6 @@ var getCityInfo = function (city) {
         })
 };
 
-    
-
-
 // Pull another API for 5 day forecast using the city Lat and Lon
 
 var fiveDayInfo = function (cityLat, cityLon) {
@@ -88,10 +86,19 @@ var fiveDayInfo = function (cityLat, cityLon) {
             }
         })
         .then(function (fiveDayData) {
-            console.log(fiveDayData);
+            console.log(fiveDayData.list);
+                        
+            // Create loop that picks up every 8 entries in the 40 entry long list to get each day's time
+            // for(var i=0; i<fiveDayData.length; i++){
+                console.log(fiveDayData[0][0]);
+                
+                // return fiveDayData[i][0];
+            // }
+            
         })
-        var dataArray = fiveDayQueryURL.filter((list) => {list.dt%8===0})
-        console.log(dataArray);
+        
+        // var dataArray = fiveDayData.filter((time) => {fiveDayData.list.dt%8===0})
+        // console.log(dataArray);
 }
 
 
