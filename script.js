@@ -1,12 +1,8 @@
 // Variables
 var APIKey = "029f73215f94df358a06425c3bef0fed";
 var city = "chicago";
-var state;
-var country;
-var zipCode;
-var zipCodeQuery = "https://api.openweathermap.org/geo/1.0/zip?zip=" + zipCode + "&appid=" + APIKey;
 var limit = 5;
-var extraCityQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+
 
 // Dom Elements
 // Create an element that takes in the user input
@@ -52,13 +48,12 @@ var searchContainerEl = document.querySelector('#input-group');
 
   };
 
-
-//     console.log(event.target)
-
 var getCityInfo = function (city) {
 
     var cityQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
-
+    
+    // $( "p" ).addClass( "hide" );
+    
     fetch(cityQueryURL)
         .then(function (response) {
             console.log(response.status);
@@ -71,7 +66,6 @@ var getCityInfo = function (city) {
             console.log(data);
             // Created lat and long dynamically by taking from the first API pull to make sure 5 day forecast is pulling correct city
 
-            // console.log(data [1].lat);
             var cityLat = data.coord.lat;
             var cityLon = data.coord.lon;
             fiveDayInfo(cityLat, cityLon);
@@ -79,10 +73,13 @@ var getCityInfo = function (city) {
         })
 };
 
+    
+
+
 // Pull another API for 5 day forecast using the city Lat and Lon
 
 var fiveDayInfo = function (cityLat, cityLon) {
-    var fiveDayQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + cityLat + "&lon=" + cityLon + "&appid=" + APIKey;
+    var fiveDayQueryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLon}&appid=${APIKey}`;
     fetch(fiveDayQueryURL)
         .then(function (fiveDayResponse) {
             if (fiveDayResponse.ok) {
@@ -92,22 +89,111 @@ var fiveDayInfo = function (cityLat, cityLon) {
         })
         .then(function (fiveDayData) {
             console.log(fiveDayData);
-
         })
+        var dataArray = fiveDayQueryURL.filter((list) => {list.dt%8===0})
+        console.log(dataArray);
 }
 
-function show5Day(dataArray){
+
+
+function show5Day(city, dataArray){
     var fivedayHTML
+
 
     for(var i=0;i<dataArray.length;i++){
         fivedayHTML += `
-        html for 5 day card
+        <div class="forecast d-flex justify-content-around" id="fiveDayContainer">
+                <div class="card shadow-0 border">
+                    <div class="card-body p-4 bg-info mb-3" id="Day1">
+
+                        <h4 class="currentCity mb-1 sfw-normal">${city}</h4>
+                        <p class="mb-2 dayOneTemp">Current temperature: <strong>5.42°C</strong></p>
+                        <p class="dayOneWind">Wind: <strong>4.37°C</strong></p>
+                        <p class="dayOneHumid">Humidity: <strong>6.11°C</strong></p>
+
+                        <div class="d-flex flex-row align-items-center">
+                            <p class="mb-0 me-4">Scattered Clouds</p>
+                            <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card shadow-0 border">
+                    <div class="card-body p-4 bg-info mb-3" id="Day2">
+
+                        <h4 class="currentCity mb-1 sfw-normal">${city}</h4>
+                        <p class="dayTwoTemp mb-2">Current temperature: <strong>5.42°C</strong></p>
+                        <p class="dayTwoWind">Wind: <strong>4.37°C</strong></p>
+                        <p class= "dayTwoHumid">Humidity: <strong>6.11°C</strong></p>
+
+                        <div class="d-flex flex-row align-items-center">
+                            <p class="mb-0 me-4">Scattered Clouds</p>
+                            <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card shadow-0 border">
+                    <div class="card-body p-4 bg-info mb-3" id="Day3">
+
+                        <h4 class="currentCity mb-1 sfw-normal">${city}</h4>
+                        <p class="dayThreeTemp mb-2">Current temperature: <strong>5.42°C</strong></p>
+                        <p class="dayThreeWind">Wind: <strong>4.37°C</strong></p>
+                        <p class="dayThreeHumid">Humidity: <strong>6.11°C</strong></p>
+
+                        <div class="d-flex flex-row align-items-center">
+                            <p class="mb-0 me-4">Scattered Clouds</p>
+                            <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card shadow-0 border">
+                    <div class="card-body p-4 bg-info mb-3" id="Day4">
+
+                        <h4 class="currentCity mb-1 sfw-normal">${city}</h4>
+                        <p class="dayFourTemp mb-2">Current temperature: <strong>5.42°C</strong></p>
+                        <p class="dayFourWind">Wind: <strong>4.37°C</strong></p>
+                        <p class="dayFourHumid">Humidity: <strong>6.11°C</strong></p>
+
+                        <div class="d-flex flex-row align-items-center">
+                            <p class="mb-0 me-4">Scattered Clouds</p>
+                            <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card shadow-0 border">
+                    <div class="card-body p-4 bg-info mb-3" id="Day5">
+
+                        <h4 class="currentCity mb-1 sfw-normal">${city}</h4>
+                        <p class="dayFiveTemp mb-2">Current temperature: <strong>5.42°C</strong></p>
+                        <p class="dayFiveWind">Wind: <strong>4.37°C</strong></p>
+                        <p class="dayFiveHumid">Humidity: <strong>6.11°C</strong></p>
+
+                        <div class="d-flex flex-row  align-items-center">
+                            <p class="mb-0 me-4">Scattered Clouds</p>
+                            <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         `
     }
-
-    $().html(fivedayHTML)
+    var cityLat = data.coord.lat;
+    var cityLon = data.coord.lon;
+    $('#fiveDays').html(fivedayHTML)
 }
 
+
+
+
+  
 
         // https://api.openweathermap.org/data/2.5/forecast?lat=41.85&lon=-87.65&appid=029f73215f94df358a06425c3bef0fed
 
