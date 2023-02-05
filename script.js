@@ -87,27 +87,24 @@ var fiveDayInfo = function (cityLat, cityLon) {
         })
         .then(function (fiveDayData) {
             console.log(fiveDayData.list);
+            
                         
             // Create loop that picks up every 8 entries in the 40 entry long list to get each day's time
             for(var i=0; i<fiveDayData.list.length; i++){
-                console.log(fiveDayData.list[0][i]);
-                
-                // return fiveDayData[i][0];
+                if (i % 8 ===0) {
+                var dataArray = fiveDayData.list[i];
+                console.log(dataArray);
+                show5Day (dataArray);
+                }
             }
         })
-        
-        // var dataArray = fiveDayData.filter((time) => {fiveDayData.list.dt%8===0})
-        // console.log(dataArray);
 }
 
 
 
 function show5Day(city, dataArray){
-    var fivedayHTML
-
-
     for(var i=0;i<dataArray.length;i++){
-        fivedayHTML += `
+       var fivedayHTML += `
         <div class="forecast d-flex justify-content-around" id="fiveDayContainer">
                 <div class="card shadow-0 border">
                     <div class="card-body p-4 bg-info mb-3" id="Day1">
@@ -125,74 +122,16 @@ function show5Day(city, dataArray){
 
                 </div>
 
-                <div class="card shadow-0 border">
-                    <div class="card-body p-4 bg-info mb-3" id="Day2">
-
-                        <h4 class="currentCity mb-1 sfw-normal">${city}</h4>
-                        <p class="dayTwoTemp mb-2">Current temperature: <strong>5.42°C</strong></p>
-                        <p class="dayTwoWind">Wind: <strong>4.37°C</strong></p>
-                        <p class= "dayTwoHumid">Humidity: <strong>6.11°C</strong></p>
-
-                        <div class="d-flex flex-row align-items-center">
-                            <p class="mb-0 me-4">Scattered Clouds</p>
-                            <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="card shadow-0 border">
-                    <div class="card-body p-4 bg-info mb-3" id="Day3">
-
-                        <h4 class="currentCity mb-1 sfw-normal">${city}</h4>
-                        <p class="dayThreeTemp mb-2">Current temperature: <strong>5.42°C</strong></p>
-                        <p class="dayThreeWind">Wind: <strong>4.37°C</strong></p>
-                        <p class="dayThreeHumid">Humidity: <strong>6.11°C</strong></p>
-
-                        <div class="d-flex flex-row align-items-center">
-                            <p class="mb-0 me-4">Scattered Clouds</p>
-                            <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="card shadow-0 border">
-                    <div class="card-body p-4 bg-info mb-3" id="Day4">
-
-                        <h4 class="currentCity mb-1 sfw-normal">${city}</h4>
-                        <p class="dayFourTemp mb-2">Current temperature: <strong>5.42°C</strong></p>
-                        <p class="dayFourWind">Wind: <strong>4.37°C</strong></p>
-                        <p class="dayFourHumid">Humidity: <strong>6.11°C</strong></p>
-
-                        <div class="d-flex flex-row align-items-center">
-                            <p class="mb-0 me-4">Scattered Clouds</p>
-                            <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="card shadow-0 border">
-                    <div class="card-body p-4 bg-info mb-3" id="Day5">
-
-                        <h4 class="currentCity mb-1 sfw-normal">${city}</h4>
-                        <p class="dayFiveTemp mb-2">Current temperature: <strong>5.42°C</strong></p>
-                        <p class="dayFiveWind">Wind: <strong>4.37°C</strong></p>
-                        <p class="dayFiveHumid">Humidity: <strong>6.11°C</strong></p>
-
-                        <div class="d-flex flex-row  align-items-center">
-                            <p class="mb-0 me-4">Scattered Clouds</p>
-                            <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
-                        </div>
-
-                    </div>
                 </div>
             </div>
         `
+        $('#fiveDaysCards').html(fivedayHTML)
     }
-    var cityLat = data.coord.lat;
-    var cityLon = data.coord.lon;
+    var fiveDayData = 
+    var fiveDayTemp = main.temp;
+    var fiveDayWind = weather.main;
+    var fiveDayHumid = main.humidity;
+    var fiveDayIcon = weather.icon;
     $('#fiveDays').html(fivedayHTML)
 }
 
