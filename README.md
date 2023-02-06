@@ -23,4 +23,4 @@ Live link: https://caseyfee.github.io/WeatherWizard/
 
 ## Credits
 
-Big thanks to my fellow students, MDN documentation, and YouTubers.
+Big thanks to my fellow students, MDN documentation, my tutor, and a most helpful MVP BCS helper this week - you know who you are!
