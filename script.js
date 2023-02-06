@@ -111,19 +111,19 @@ var fiveDayInfo = function (cityLat, cityLon) {
 
 
 function show5Day(city, dataArray){
-    // for(var i=0;i<dataArray;i++){
+    for(var i=0;i<dataArray;i++){
        var fivedayHTML = `
         <div class="forecast d-flex justify-content-around" id="fiveDayContainer">
                 <div class="card shadow-0 border">
                     <div class="card-body p-4 bg-info mb-3" id="Day1">
                         <h4 class="currentCity mb-1 sfw-normal">${city}</h4>
-                        <p class="mb-2 dayOneTemp">Current temperature: <strong>${main.temp[0]}°C</strong></p>
-                        <p class="dayOneWind">Wind: <strong>${weather.main[0]}</strong></p>
-                        <p class="dayOneHumid">Humidity: <strong>${main.humidity[0]}</strong></p>
+                        <p class="mb-2 dayOneTemp">Current temperature: <strong>${dataArray[0].main.temp}°C</strong></p>
+                        <p class="dayOneWind">Wind: <strong>${dataArray[0].weather.main}</strong></p>
+                        <p class="dayOneHumid">Humidity: <strong>${dataArray[0].main.humidity}</strong></p>
 
                         <div class="d-flex flex-row align-items-center">
                             <p class="mb-0 me-4">Scattered Clouds</p>
-                            <i class="fas fa-cloud fa-3x" style="color: #eee;"> ${weather.icon[0]} </i>
+                            <i class="fas fa-cloud fa-3x" style="color: #eee;"> ${dataArray[0].weather.icon} </i>
                         </div>
                     </div>
                 </div>
@@ -131,7 +131,7 @@ function show5Day(city, dataArray){
             </div>
         `
         $('#fiveDayContainer').html(fivedayHTML)
-    // }
+    }
     
     // var fiveDayTemp = main.temp;
     // var fiveDayWind = weather.main;
