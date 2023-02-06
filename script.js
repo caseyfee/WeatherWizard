@@ -36,14 +36,19 @@ var fiveDayEL=document.getElementById("#fiveDaysCards");
 
   var showCurrentWeather = function(cityName, data) {
     var currentWeatherHTML = `<h4 class="currentCity mb-1 sfw-normal">${cityName}</h4>
-    <p class="mb-2">Current temperature: <strong>${data.main.temp}°C</strong></p>
-    <p>Feels like: <strong>${data.main.feels_like}</strong></p>
-    <p>Max: <strong>${data.main.temp_max}</strong>, Min: <strong>${data.main.temp_min}</strong></p>
+    <p class="mb-2">Current temperature: <strong>${data.main.temp-273.15}°C</strong></p>
+    <p>Feels like: <strong>${data.main.feels_like-273.15}°C</strong></p>
+    <p>Max: <strong>${data.main.temp_max-273.15}°C</strong>, Min: <strong>${data.main.temp_min-273.15}°C</strong></p>
 
     <div class="d-flex flex-row align-items-center">
         <p class="mb-0 me-4">${data.weather.main}</p>
         <i class="fas fa-cloud fa-3x" style="color: #eee;"> ${data.weather.icon}</i>
     </div>`;
+
+    // var mainTemp = data.main.temp-273.15;
+    // var feelsTemp = data.main.feels_like-273.15;
+    // var maxTemp = data.main.temp_max-273.15;
+    // var minTemp = data.main.temp_min-273.15;
 
     $('#currentCityWeather').html(currentWeatherHTML)
 
@@ -82,7 +87,7 @@ var fiveDayInfo = function (cityLat, cityLon) {
         .then(function (fiveDayResponse) {
             if (fiveDayResponse.ok) {
                 return fiveDayResponse.json();
-                // var fiveDayData = "";
+                var fiveDayData = "";
             }
         })
         .then(function (fiveDayData) {
@@ -90,48 +95,48 @@ var fiveDayInfo = function (cityLat, cityLon) {
             
                         
             // Create loop that picks up every 8 entries in the 40 entry long list to get each day's time
-            for(var i=0; i<fiveDayData.list.length; i++){
-                if (i % 8 ===0) {
-                var dataArray = fiveDayData.list[i];
-                console.log(dataArray);
-                show5Day (dataArray);
+                for(var i=0; i<fiveDayData.list.length; i++){
+                    if (i % 8 ===0) {
+                    var dataArray = fiveDayData.list[i];
+                    console.log(dataArray);
+                    // console.log(dataArray.length); - undefined?
+                    // show5Day (dataArray);
+                    }
                 }
-            }
+            // dataArray = fiveDayData.list.filter((fiveDates)=>{fivedate%8===0});
+            // console.log(dataArray);
         })
 }
 
 
 
 function show5Day(city, dataArray){
-    for(var i=0;i<dataArray.length;i++){
-       var fivedayHTML += `
+    // for(var i=0;i<dataArray;i++){
+       var fivedayHTML = `
         <div class="forecast d-flex justify-content-around" id="fiveDayContainer">
                 <div class="card shadow-0 border">
                     <div class="card-body p-4 bg-info mb-3" id="Day1">
-
                         <h4 class="currentCity mb-1 sfw-normal">${city}</h4>
-                        <p class="mb-2 dayOneTemp">Current temperature: <strong>5.42°C</strong></p>
-                        <p class="dayOneWind">Wind: <strong>4.37°C</strong></p>
-                        <p class="dayOneHumid">Humidity: <strong>6.11°C</strong></p>
+                        <p class="mb-2 dayOneTemp">Current temperature: <strong>${main.temp[0]}°C</strong></p>
+                        <p class="dayOneWind">Wind: <strong>${weather.main[0]}</strong></p>
+                        <p class="dayOneHumid">Humidity: <strong>${main.humidity[0]}</strong></p>
 
                         <div class="d-flex flex-row align-items-center">
                             <p class="mb-0 me-4">Scattered Clouds</p>
-                            <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
+                            <i class="fas fa-cloud fa-3x" style="color: #eee;"> ${weather.icon[0]} </i>
                         </div>
                     </div>
-
                 </div>
-
                 </div>
             </div>
         `
-        $('#fiveDaysCards').html(fivedayHTML)
-    }
-    var fiveDayData = 
-    var fiveDayTemp = main.temp;
-    var fiveDayWind = weather.main;
-    var fiveDayHumid = main.humidity;
-    var fiveDayIcon = weather.icon;
+        $('#fiveDayContainer').html(fivedayHTML)
+    // }
+    
+    // var fiveDayTemp = main.temp;
+    // var fiveDayWind = weather.main;
+    // var fiveDayHumid = main.humidity;
+    // var fiveDayIcon = weather.icon;
     $('#fiveDays').html(fivedayHTML)
 }
 
