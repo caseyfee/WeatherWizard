@@ -40,13 +40,8 @@ var mainSearchInput = function(){
 
     <div class="d-flex flex-row align-items-center">
         <p class="mb-0 me-4">${data.weather[0].description}</p>
-        <img class="fas fa-cloud fa-3x" style="color: #eee;" src = "http://openweathermap.org/img/wn/${data.weather[0].icon}.png >
+        <img class="fas fa-cloud fa-3x" style="color: #eee;" src = "http://openweathermap.org/img/wn/${data.weather[0].icon}.png">
     </div>`;
-
-    // var mainTemp = data.main.temp-273.15;
-    // var feelsTemp = data.main.feels_like-273.15;
-    // var maxTemp = data.main.temp_max-273.15;
-    // var minTemp = data.main.temp_min-273.15;
 
     $('#currentCityWeather').html(currentWeatherHTML)
 
@@ -75,25 +70,9 @@ var getCityInfo = function (city) {
             var cityLon = data.coord.lon;
             fiveDayInfo(cityLat, cityLon);
             showCurrentWeather(city, data);
-            getIcons (data);
+            // getIcons (data);
         })
 };
-
-// Call to a different API to get the weather icons - DON'T NEED
-
-// var getIcons = function(data) {
-
-//     var iconURL = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`
-
-//     // fetch(iconURL)
-//     //     .then(function (iconResponse) {
-//     //         console.log(iconResponse);
-//     //         console.log(iconResponse.status);
-        
-//     //     return response.json();
-//     // })
-
-// }
 
 // Pull another API for 5 day forecast using the city Lat and Lon
 
@@ -103,7 +82,7 @@ var fiveDayInfo = function (cityLat, cityLon) {
         .then(function (fiveDayResponse) {
             if (fiveDayResponse.ok) {
                 return fiveDayResponse.json();
-                var fiveDayData = "";
+                // var fiveDayData = "";
             }
         })
         .then(function (fiveDayData) {
@@ -116,43 +95,51 @@ var fiveDayInfo = function (cityLat, cityLon) {
                     if (i % 8 ===0) {
                         // 8 entries per day, want to find one for each of the 5 days
                     dataArray.push(fiveDayData.list[i]);
-                    console.log(dataArray);
-                    
-                    
+                    console.log(dataArray);   
+                        
                     }
             
             // dataArray = fiveDayData.list.filter((fiveDates)=>{fivedate%8===0});
             // console.log(dataArray);
         } show5Day (city, dataArray);
-    })
-    } ;
+    }) 
+    } 
 
+// function convertUTCDateToLocalDate(date) {
+//         var newDate = new Date(date.getTime()+date.getTimezoneOffset()*60*1000);
+    
+//         var offset = date.getTimezoneOffset() / 60;
+//         var hours = date.getHours();
+    
+//         newDate.setHours(hours - offset);
+    
+//         return newDate;   
+//     }
 
 
 function show5Day(city, dataArray){
     var fivedayHTML = ``;
     for(var i=0;i<dataArray.length;i++){
-       fivedayHTML = `
+       fivedayHTML += `
         <div class="forecast d-flex justify-content-around" id="fiveDayContainer">
                 <div class="card shadow-0 border">
                     <div class="card-body p-4 bg-info mb-3" id="Day1">
                         <h4 class="currentCity mb-1 sfw-normal">${city}</h4>
-                        <p class="mb-2 dayOneTemp">Current temperature: <strong>${Number(dataArray[i].main.temp).toFixed(1)}°C</strong></p>
-                        <p class="dayOneWind">Wind: <strong>${Number(dataArray[i].weather.main).toFixed(1)}</strong></p>
-                        <p class="dayOneHumid">Humidity: <strong>${Number(dataArray[i].main.humidity).toFixed(1)}</strong></p>
+                        <p class="mb-2 dayOneTemp">Current temperature: <strong>${Number(dataArray[i].main.temp-273.15).toFixed(1)}°C</strong></p>
+                        <p class="dayOneWind">Wind Speed: <strong>${Number(dataArray[i].wind.speed).toFixed(1)} mph</strong></p>
+                        <p class="dayOneHumid">Humidity: <strong>${Number(dataArray[i].main.humidity).toFixed(1)}%</strong></p>
 
                         <div class="d-flex flex-row align-items-center">
                             <p class="mb-0 me-4">${dataArray[i].weather[0].description}</p>
-                            <img class="fas fa-cloud fa-3x" style="color: #eee;"scr ="http://openweathermap.org/img/wn/> ${dataArray[i].weather[0].icon}.png">
+                            <img class="fas fa-cloud fa-3x" style="color: #eee;" scr ="http://openweathermap.org/img/wn/${dataArray[i].weather[0].icon}.png">
                         </div>
                     </div>
                 </div>
                 </div>
             </div>
         `
-
-        console.log(show5Day);
-
+    
+                                                                                
     } $('#fiveDayContainer').html(fivedayHTML);
     }
     
@@ -162,7 +149,7 @@ function show5Day(city, dataArray){
     // var fiveDayIcon = weather.icon;
     // $('#fiveDays').html(fivedayHTML)
 
-    // https://api.openweathermap.org/data/2.5/forecast?lat=41.85&lon=-87.65&appid=029f73215f94df358a06425c3bef0fed
+    // Saving Searches
 
     // Save the search events by creating keys for each datapoints that are pulled and save them locally
     // mainSearchEl.addEventListener('click', mainSearchInput);
