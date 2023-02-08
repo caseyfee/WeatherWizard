@@ -33,8 +33,18 @@ var mainSearchInput = function(){
     }}
 
   var showCurrentWeather = function(cityName, data) {
+
+    var todayDate = "";
+    // Get today's date
+    const unixTime = `${data.dt}`;
+    const milliseconds = unixTime*1000;
+    const dateobject = new Date(milliseconds);
+    const newDateFormat = dateobject.toLocaleString();
+    console.log(newDateFormat);
+    
+    todayDate = newDateFormat;
     var currentWeatherHTML = `<h4 class="currentCity mb-1 sfw-normal">${cityName}</h4>
-    <h5 mb-1 sfw-normal">${date}</h5>
+    <h5 mb-1 sfw-normal">${todayDate}</h5>
     <p class="mb-2">Current temperature: <strong>${convertTemp(Number(data.main.temp).toFixed(1))}°F</strong></p>
     <p>Feels like: <strong>${convertTemp(Number(data.main.feels_like).toFixed(1))}°F</strong></p>
     <p>Max: <strong>${convertTemp(Number(data.main.temp_max).toFixed(1))}°F</strong>, Min: <strong>${convertTemp(Number(data.main.temp_min).toFixed(1))}°F</strong></p>
@@ -50,18 +60,11 @@ var mainSearchInput = function(){
             return Math.floor((k - 273.15) * 1.8 + 32);
         }
 
-        var date = "";
-        // Get Today's Date
-        const unixTime = `${data.dt}`;
-        const milliseconds = unixTime*1000;
-        const dateobject = new Date(milliseconds);
-
-        const newDateFormat = dateobject.toLocaleString();
-        console.log(newDateFormat);
         
-        date = newDateFormat;
+        // Get Today's Date
+            // const unixTime = `${data.dt}`;
+        
     
-        console.log(typeof(date));
 
         // const currentDay = new Date(data.dt);
         //         const day = currentDay.getDate() - 1;
@@ -129,7 +132,17 @@ var fiveDayInfo = function (cityLat, cityLon) {
 
 function show5Day(dataArray){
     var fivedayHTML = ``;
+    var date = "";
+            
     for(var i=0;i<dataArray.length;i++){
+
+        // Get 5 days of dates
+        const time = `${dataArray[i].dt_txt}`;
+        // console.log(`${dataArray[i].dt}`);
+        const newDateFormat = time.toLocaleString();
+        console.log(newDateFormat);
+        date = newDateFormat;
+
        fivedayHTML += `
         <div class="forecast d-flex justify-content-around" id="fiveDayContainer">
                 <div class="card shadow-0 border">
@@ -151,20 +164,6 @@ function show5Day(dataArray){
         function convertTemp(k) {
             return Math.floor((k - 273.15) * 1.8 + 32);
         }
-
-        var date;
-        // Get 5 days of dates
-        const unixTime = `${dataArray[i].dt}`;
-        console.log(`${dataArray[i].dt}`);
-        const milliseconds = unixTime*1000;
-        const dateobject = new Date(milliseconds);
-
-        const newDateFormat = dateobject.toLocaleString();
-        console.log(newDateFormat);
-        
-        date = newDateFormat;
-    
-        // console.log(typeof(date));
 
                                                                                 
     } $('#fiveDayContainer').html(fivedayHTML);
