@@ -141,7 +141,10 @@ function show5Day(dataArray){
         // console.log(`${dataArray[i].dt}`);
         const newDateFormat = time.toLocaleString();
         console.log(newDateFormat);
+        // date = str.split(' ');
         date = newDateFormat;
+        // new date[0] = newDateFormat;
+
 
        fivedayHTML += `
         <div class="forecast d-flex justify-content-around" id="fiveDayContainer">
