@@ -60,6 +60,7 @@ var mainSearchInput = function(){
         console.log(newDateFormat);
         
         date = newDateFormat;
+    
         console.log(typeof(date));
 
         // const currentDay = new Date(data.dt);
@@ -124,11 +125,7 @@ var fiveDayInfo = function (cityLat, cityLon) {
             
         } show5Day (dataArray);
     }) 
-    } 
-
-    
-
-
+    }
 
 function show5Day(dataArray){
     var fivedayHTML = ``;
@@ -137,7 +134,7 @@ function show5Day(dataArray){
         <div class="forecast d-flex justify-content-around" id="fiveDayContainer">
                 <div class="card shadow-0 border">
                     <div class="card-body p-4 bg-info mb-3" id="Day1">
-                        <h4 class="currentCity mb-1 sfw-normal">${dataArray[i].dt}</h4>
+                        <h4 class="mb-1 sfw-normal">${date}</h4>
                         <p class="mb-2 dayOneTemp">Current temperature: <strong>${convertTemp(Number(dataArray[i].main.temp).toFixed(1))}°C</strong></p>
                         <p class="dayOneWind">Wind Speed: <strong>${Number(dataArray[i].wind.speed).toFixed(1)} mph</strong></p>
                         <p class="dayOneHumid">Humidity: <strong>${Number(dataArray[i].main.humidity).toFixed(1)}%</strong></p>
@@ -155,12 +152,19 @@ function show5Day(dataArray){
             return Math.floor((k - 273.15) * 1.8 + 32);
         }
 
-        //  // Adding the dates in the 5 day 
-        //  const currentDay = new Date(data.list[0].dt_txt);
-        //  const day = currentDay.getDate() - 1;
-        //  const month = currentDay.getMonth() + 1;
-        //  const year = currentDay.getFullYear();
-        //  date.textContent = month + "/" + day + "/" + year;
+        var date;
+        // Get 5 days of dates
+        const unixTime = `${dataArray[i].dt}`;
+        console.log(`${dataArray[i].dt}`);
+        const milliseconds = unixTime*1000;
+        const dateobject = new Date(milliseconds);
+
+        const newDateFormat = dateobject.toLocaleString();
+        console.log(newDateFormat);
+        
+        date = newDateFormat;
+    
+        // console.log(typeof(date));
 
                                                                                 
     } $('#fiveDayContainer').html(fivedayHTML);
