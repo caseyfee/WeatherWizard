@@ -12,9 +12,6 @@ var searchContainerEl = document.querySelector('#input-group');
 var fiveDayEL = document.getElementById("#fiveDaysCards");
 
 
-// https://api.openweathermap.org/geo/1.0/direct?q=chicago&limit=5&appid=029f73215f94df358a06425c3bef0fed
-
-
 // Create an action to pull the city data from the input
 // Use class to change text.content of all of them at once? [class=currentCity]
 
@@ -25,11 +22,11 @@ var mainSearchInput = function () {
         getCityInfo(city);
 
         let searchHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
-       if (!searchHistory.includes(city)) {
-        searchHistory.push(city);
-        localStorage.setItem("cityHistory", JSON.stringify(searchHistory));
-        displayHistory();
-       }
+        if (!searchHistory.includes(city)) {
+            searchHistory.push(city);
+            localStorage.setItem("cityHistory", JSON.stringify(searchHistory));
+            displayHistory();
+        }
 
         // mainSearchInput.textContent = '';
         cityInputEl.value = '';
@@ -67,18 +64,6 @@ var showCurrentWeather = function (cityName, data) {
     function convertTemp(k) {
         return Math.floor((k - 273.15) * 1.8 + 32);
     }
-
-
-    // Get Today's Date
-    // const unixTime = `${data.dt}`;
-
-
-
-    // const currentDay = new Date(data.dt);
-    //         const day = currentDay.getDate() - 1;
-    //         const month = currentDay.getMonth() + 1;
-    //         const year = currentDay.getFullYear();
-    //         date.textContent = month + "/" + day + "/" + year;
 
 };
 
@@ -197,7 +182,7 @@ function displayHistory() {
                 ${city}
             </span>
         </a>`
-    } 
+    }
     $('#previousCities').html(previousSearchesHTML);
 }
 

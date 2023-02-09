@@ -1,23 +1,24 @@
 body {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-  }
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
 
 .navbar {
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
-    color: white;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+  color: white;
 }
 
 
 .forecast {
-    display: flex;
-  
-    gap: 5px;
+  display: flex;
+
+  gap: 5px;
 
 }
+
 .futureForecast {
-    width: 100vw;
+  width: 100vw;
 
 }
 
@@ -26,6 +27,5 @@ body {
 }
 
 .currentCity {
-  color:blueviolet;
+  color: blueviolet;
 }
-
