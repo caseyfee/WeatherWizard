@@ -9,7 +9,7 @@ var limit = 5;
 
 var cityInputEl = document.getElementById("cityName");
 var searchContainerEl = document.querySelector('#input-group');
-var fiveDayEL=document.getElementById("#fiveDaysCards");
+var fiveDayEL = document.getElementById("#fiveDaysCards");
 
 
 // https://api.openweathermap.org/geo/1.0/direct?q=chicago&limit=5&appid=029f73215f94df358a06425c3bef0fed
@@ -18,30 +18,38 @@ var fiveDayEL=document.getElementById("#fiveDaysCards");
 // Create an action to pull the city data from the input
 // Use class to change text.content of all of them at once? [class=currentCity]
 
-var mainSearchInput = function(){
-    city=cityInputEl.value.trim();
+var mainSearchInput = function () {
+    city = cityInputEl.value.trim();
 
     if (city) {
         getCityInfo(city);
 
+        let searchHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
+       if (!searchHistory.includes(city)) {
+        searchHistory.push(city);
+        localStorage.setItem("cityHistory", JSON.stringify(searchHistory));
+        displayHistory();
+       }
+
         // mainSearchInput.textContent = '';
-        cityInputEl.value='';
+        cityInputEl.value = '';
         console.log(searchContainerEl);
     }
     else {
         console.log("there is an issue");
-    }}
+    }
+}
 
-  var showCurrentWeather = function(cityName, data) {
+var showCurrentWeather = function (cityName, data) {
 
     var todayDate = "";
     // Get today's date
     const unixTime = `${data.dt}`;
-    const milliseconds = unixTime*1000;
+    const milliseconds = unixTime * 1000;
     const dateobject = new Date(milliseconds);
     const newDateFormat = dateobject.toLocaleString();
     console.log(newDateFormat);
-    
+
     todayDate = newDateFormat;
     var currentWeatherHTML = `<h4 class="currentCity mb-1 sfw-normal">${cityName}</h4>
     <h5 mb-1 sfw-normal">${todayDate}</h5>
@@ -57,30 +65,30 @@ var mainSearchInput = function(){
     $('#currentCityWeather').html(currentWeatherHTML)
 
     function convertTemp(k) {
-            return Math.floor((k - 273.15) * 1.8 + 32);
-        }
+        return Math.floor((k - 273.15) * 1.8 + 32);
+    }
 
-        
-        // Get Today's Date
-            // const unixTime = `${data.dt}`;
-        
-    
 
-        // const currentDay = new Date(data.dt);
-        //         const day = currentDay.getDate() - 1;
-        //         const month = currentDay.getMonth() + 1;
-        //         const year = currentDay.getFullYear();
-        //         date.textContent = month + "/" + day + "/" + year;
+    // Get Today's Date
+    // const unixTime = `${data.dt}`;
 
-  };
+
+
+    // const currentDay = new Date(data.dt);
+    //         const day = currentDay.getDate() - 1;
+    //         const month = currentDay.getMonth() + 1;
+    //         const year = currentDay.getFullYear();
+    //         date.textContent = month + "/" + day + "/" + year;
+
+};
 
 //   Initial function to call to API
 var getCityInfo = function (city) {
 
     var cityQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`;
-    
+
     // $( "p" ).addClass( "hide" );
-    
+
     fetch(cityQueryURL)
         .then(function (response) {
             console.log(response.status);
@@ -95,9 +103,9 @@ var getCityInfo = function (city) {
 
             var cityLat = data.coord.lat;
             var cityLon = data.coord.lon;
+
             fiveDayInfo(cityLat, cityLon);
             showCurrentWeather(city, data);
-            displayHistory(city);
         })
 };
 
@@ -114,27 +122,27 @@ var fiveDayInfo = function (cityLat, cityLon) {
         })
         .then(function (fiveDayData) {
             console.log(fiveDayData.list);
-            
-            var dataArray =[];
+
+            var dataArray = [];
 
             // Create loop that picks up every 8 entries in the 40 entry long list to get each day's time
-                for(var i=0; i<40; i++){
-                    if (i % 8 ===0) {
-                        // 8 entries per day, want to find one for each of the 5 days
+            for (var i = 0; i < 40; i++) {
+                if (i % 8 === 0) {
+                    // 8 entries per day, want to find one for each of the 5 days
                     dataArray.push(fiveDayData.list[i]);
-                    console.log(dataArray);   
-                        
-                    }        
-            
-        } show5Day (dataArray);
-    }) 
-    }
+                    console.log(dataArray);
 
-function show5Day(dataArray){
+                }
+
+            } show5Day(dataArray);
+        })
+}
+
+function show5Day(dataArray) {
     var fivedayHTML = ``;
     var date = "";
-            
-    for(var i=0;i<dataArray.length;i++){
+
+    for (var i = 0; i < dataArray.length; i++) {
 
         // Get 5 days of dates
         const time = `${dataArray[i].dt_txt}`;
@@ -146,7 +154,7 @@ function show5Day(dataArray){
         // new date[0] = newDateFormat;
 
 
-       fivedayHTML += `
+        fivedayHTML += `
         <div class="forecast d-flex justify-content-around" id="fiveDayContainer">
                 <div class="card shadow-0 border">
                     <div class="card-body p-4 bg-info mb-3" id="Day1">
@@ -168,32 +176,31 @@ function show5Day(dataArray){
             return Math.floor((k - 273.15) * 1.8 + 32);
         }
 
-                                                                                
-    } $('#fiveDayContainer').html(fivedayHTML);
-    }
 
-let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
+    } $('#fiveDayContainer').html(fivedayHTML);
+}
+
+
 
 // Saving Searches
 // Save the search events by creating keys for each datapoints that are pulled and save them locally
-    function displayHistory(city) {
-        var previousSearchesHTML = ``;
+function displayHistory() {
+    var previousSearchesHTML = ``;
 
-        for (i = 0; i < searchHistory.length; i++) {
-            previousSearchesHTML += `
-            <a type="button">
+    let searchHistory = JSON.parse(localStorage.getItem("cityHistory")) || [];
+
+    for (var i = 0; i < searchHistory.length; i++) {
+        const city = searchHistory[i];
+        previousSearchesHTML += `
+        <a type="button" onclick="getCityInfo('${city}')">
             <span class="input-group-text border-0 fw-bold" >
-                ${city[i]}
+                ${city}
             </span>
-             </a>`
+        </a>`
+    } 
+    $('#previousCities').html(previousSearchesHTML);
+}
 
-            historyEl.addEventListener("click", function () {
-                getCityInfo(city);
-            })
+displayHistory();
 
-        } $('#previousCities').html(previousSearchesHTML);
-    }
 
-   
-
-    
